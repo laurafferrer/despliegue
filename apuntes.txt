@@ -1,0 +1,27 @@
+INSTALACIÓN
+Instalar servidor apache2 -> sudo apt-get install apache2
+Comprobar que esta instalado -> systemctl status apache2
+Se activa -> a2enmod -m ssi
+Para cerrar puertos fichero - /etc/apache2/ports.conf
+Deshabilitar sitio web -> sudo a2dissite 000-default.conf
+
+PREPARACIÓN PRUEBAS
+Se resuelven nombres en el fichero -> /etc/hosts {IP    empresa.com www.empresa.com publica.com}
+
+CONFIGURACIÓN PÁGINA PÚBLICA
+Ejemplo directorio almacenamiento -> /var/www/publica/empresa.conf
+Fichero empresa pública -> index.html
+El fichero del espacio web se genera -> cd /etc/apache2/sites-available
+                                        sudo cp default-ssl.conf empresa.com.conf
+El fichero del espacio web es -> /etc/apache2/empresa.com.conf
+Activar web ->  sudo a2ensite empresa.com.conf
+                systemctl reload apachectl
+Esta página responde a -> empresa.com y www.empresa.com
+
+CONFIGURACIÓN ARCHIVO PÁGINA PÚBLICA .com.conf!
+    <VirtualHost IP:PUERTO>
+    DocumentRoot /var/www/publica/empresa.com
+    ServerName www.empresa.com
+    ServerAlias empresa.com
+    <Directory /var/www/publica/empresa.com> </Directory>
+
