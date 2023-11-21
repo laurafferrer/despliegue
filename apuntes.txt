@@ -1,3 +1,4 @@
+        SERVIDOR MULTISITE
 INSTALACIÓN
 Instalar servidor apache2 -> sudo apt-get install apache2
 Comprobar que esta instalado -> systemctl status apache2
@@ -9,7 +10,7 @@ PREPARACIÓN PRUEBAS
 Se resuelven nombres en el fichero -> /etc/hosts {IP    empresa.com www.empresa.com publica.com}
 
 CONFIGURACIÓN PÁGINA PÚBLICA
-Ejemplo directorio almacenamiento -> /var/www/publica/empresa.conf
+Ejemplo directorio almacenamiento -> /var/www/publica/empresa.com
 Fichero empresa pública -> index.html
 El fichero del espacio web se genera -> cd /etc/apache2/sites-available
                                         sudo cp default-ssl.conf empresa.com.conf
@@ -25,3 +26,30 @@ CONFIGURACIÓN ARCHIVO PÁGINA PÚBLICA .com.conf!
     ServerAlias empresa.com
     <Directory /var/www/publica/empresa.com> </Directory>
 
+CONFIGURACIÓN PÁGINA PRIVADA
+Ejemplo directorio almacenamiento -> /var/www/privada/intranet.com
+Fichero empresa pública -> index.html
+El fichero del espacio web se genera -> cd /etc/apache2/sitex-available
+                                        sudo cd default-ssl.conf intranet.empres.com.conf
+El fichero del espacio web es -> /etc/apache2/intranet.empresa.com.conf 
+Activar web ->  sudo a2ensite intranet.empresa.com.conf 
+                systemctl reload apachectl 
+Esta página responde a -> intranet.empresa.com, intranet.com e intranet.
+
+HABILITAR CONTRASEÑA EN INTRANET
+Creación de usuarios en -> /opt/apache2/intranet.com { hay que crear las carpetas de la ruta }
+Para introducir la contraseña en el fichero /opt/apache2/intranet.com/passwords -> sudo htpasswd -c /opt/apache2/intranet.com/passwords empleado
+
+CONFIGURACIÓN ARCHIVO PÁGINA PÚBLICA .com.conf
+    <VirtualHost IP:PUERTO>
+    DocumentRoot /var/www/privada/intranet.empresa.com
+    ServerName www.intranet.empresa.com
+    ServerAlias intranet.com
+    <Directory /var/www/privada/intranet.com> 
+        Options Indexes
+        AuthType Basic
+        AuthName "ACCESO RESTRINGIDO A LA INTRANET"
+        AuthBasicProvider file
+        AuthUserFile "/opt/apache2/intranet.com/passwords"
+        Require valid-user
+    </Directory>
