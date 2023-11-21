@@ -1,0 +1,38 @@
+            SERVICIO WEB
+PROTOCOLO HTTP
+HTTP: HyperText Transfer Protocol 
+Texto: conjunto de caracteres
+Hypertexto: Más que texto capacidad de vincular textos y objetos.
+HTML: Hypertext Markup Language -> Es una forma de definir la estructura y los elementos de un documento/página
+UTL: Uniform Rresource Locator -> Nos ayuda a encontrar los objetos y elementos de la página para hacer la composición.
+
+ELEMENTOS 
+Client: user-agent -> Nageador
+Web Server: Apache, Nginx IIS
+Proxy: Máquinas intermediarias en la transferencia de mensajes HTTP: cache, filtrado, balanceo de carga, autenticación.
+
+SERVICIO WEB
+HTTP Sencillo
+HTTP Extensible
+HTTP tiene sesiones, pero sin estados
+HTTO usa conexiones de TCP
+Funciones que permite el protocolo:
+    -Control de cache
+    -Control de cabeceras: para compartir información 
+    -Autenticación: WWW-Authenticate / Cookies
+    -Proxies y tuneling: Ubicación dentro de intranets
+    -Sesiones: HTTP Cookies
+
+PROTOCLO HTTP
+Protocolo cliente-servidor
+    HTTP define el conjunto de mensajes que se necesitan intercambiar para poder realizar la transferencia de un servidor al cliente.
+    Elementos que encontramos:
+        -Mensajes de petición y de respuesta
+        -Sesión con HTTPv1.1 para reducir establecimeintos de conexión
+        -Métodos de petición. GET, POST, HEAD, OPTIONS
+        -Códigos de estado:
+            -1xx info
+            -2xx éxito
+            -3xx redir 
+            -4xx error cliente 
+            -5xx error servidor 
